@@ -1,4 +1,4 @@
-//REFACT4: eXTRACCIO DE CLASE: OrderLineItem
+//REFACT4: EXTRACCIO DE CLASE: OrderLineItem
 public class OrderLineItem {
     private String productName;
     private int quantity;

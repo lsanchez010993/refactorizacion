@@ -3,9 +3,9 @@ import java.util.List;
 import java.util.Scanner;
 
 public class Main {
-    static Scanner scan = new Scanner(System.in);
+//    static Scanner scan = new Scanner(System.in);
 
-    //REFACT1: METODO: menu()
+    //REFACT1: Extraccion de metode: menu()
     public static int menu() {
         System.out.println("1. ");
         System.out.println("2. ");
@@ -14,26 +14,29 @@ public class Main {
         System.out.println("5. ");
         System.out.println("0. Acabar");
 
-        int opcio = scan.nextInt();
-        scan.nextLine();
-        return opcio;
+        return introducirOpcion();
     }
-    //REFACT1
+    //Refactor 2: Tècnica: Inline Code
+    public static int introducirOpcion(){
+        Scanner scan = new Scanner(System.in);
+        return scan.nextInt();
+    }
+    //REFACT3
     public static void opcio1() {
         System.out.println("intro: ");
-        int num1 = scan.nextInt();
+        int num1 = introducirOpcion();
         System.out.println("intro: ");
-        int num2 = scan.nextInt();
+        int num2 = introducirOpcion();
         if (max(num1, num2)) {
             System.out.println("aaa");
         } else System.out.println("bbb");
     }
 
-    public static void opcio2() {
+    public static void opcio4() {
         System.out.println("intro: ");
-        int num1 = scan.nextInt();
+        int num1 = introducirOpcion();
         System.out.println("intro: ");
-        int num2 = scan.nextInt();
+        int num2 = introducirOpcion();
         if (max(num1, num2)) {
             System.out.println("aaa");
         } else System.out.println("bbb");
@@ -49,7 +52,7 @@ public class Main {
 
             switch (opcio) {
                 case 1:
-                    //Refact2: opcio1()
+                    //Refact2: EXTRACCIO DE METODE
 //                    System.out.println("intro: ");
 //                    int num1 = scan.nextInt();
 //                    System.out.println("intro: ");
@@ -74,6 +77,8 @@ public class Main {
             }
         } while (opcio != 0);
     }
+
+
 
     public static boolean max(int a, int b) {
         if (a > b) {
