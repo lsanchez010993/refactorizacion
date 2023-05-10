@@ -3,6 +3,7 @@ import java.util.List;
 import java.util.Scanner;
 
 public class Main {
+    //Refactor 2: Tècnica: Inline Code
 //    static Scanner scan = new Scanner(System.in);
 
     //REFACT1: Extraccion de metode: menu()
@@ -21,16 +22,7 @@ public class Main {
         Scanner scan = new Scanner(System.in);
         return scan.nextInt();
     }
-    //REFACT3
-    public static void opcio1() {
-        System.out.println("intro: ");
-        int num1 = introducirOpcion();
-        System.out.println("intro: ");
-        int num2 = introducirOpcion();
-        if (max(num1, num2)) {
-            System.out.println("aaa");
-        } else System.out.println("bbb");
-    }
+
 
     public static void opcio4() {
         System.out.println("intro: ");
@@ -41,7 +33,16 @@ public class Main {
             System.out.println("aaa");
         } else System.out.println("bbb");
     }
-
+    //REFACT3
+    public static void opcio1() {
+        System.out.println("intro: ");
+        int num1 = introducirOpcion();
+        System.out.println("intro: ");
+        int num2 = introducirOpcion();
+        if (max(num1, num2)) {
+            System.out.println("aaa");
+        } else System.out.println("bbb");
+    }
     public static void main(String[] args) {
         int opcio;
         do {
@@ -52,7 +53,7 @@ public class Main {
 
             switch (opcio) {
                 case 1:
-                    //Refact2: EXTRACCIO DE METODE
+                    //Refact3: EXTRACCIO DE METODE
 //                    System.out.println("intro: ");
 //                    int num1 = scan.nextInt();
 //                    System.out.println("intro: ");
@@ -60,10 +61,13 @@ public class Main {
 //                    if (max(num1, num2)) {
 //                        System.out.println("aaa");
 //                    } else System.out.println("bbb");
+
+                    //Refact3: EXTRACCIO DE METODE
+
                     opcio1();
                     break;
                 case 2:
-                    //REFACT2
+                    //REFACT2: Tècnica: Inline Code
                     calcEquacioSegongrau(2, 3, 1);
                     break;
                 case 3:
@@ -79,16 +83,21 @@ public class Main {
     }
 
 
+//REFACT8: INLINE CODE
+//    public static boolean max(int a, int b) {
+//        if (a > b) {
+//            return true;
+//        } else if (a == b) {
+//            return false;
+//        } else {
+//            return false;
+//        }
+//    }
 
-    public static boolean max(int a, int b) {
-        if (a > b) {
-            return true;
-        } else if (a == b) {
-            return false;
-        } else {
-            return false;
-        }
-    }
+//REFACT8: INLINE CODE
+public static boolean max(int a, int b) {
+    return a > b;
+}
 
     public static void calcEquacioSegongrau(double a, double b, double c) {
         double D = b * b - 4 * a * c;
@@ -106,48 +115,59 @@ public class Main {
         }
     }
 
+    //REFACT7: Mètode Inline Code:
+//    public static class Human {
+//        private String name;
+//        private String age;
+//        private String country;
+//        private String city;
+//        private String street;
+//        private String house;
+//        private String quarter;
+//
+
+
+    //REFACT8: Mètode Inline Code:
+//        public String obtenirAdrecaCompleta() {
+//            StringBuilder result = new StringBuilder();
+//            return result
+//                    .append(country)
+//                    .append(", ")
+//                    .append(city)
+//                    .append(", ")
+//                    .append(street)
+//                    .append(", ")
+//                    .append(house)
+//                    .append(" ")
+//                    .append(quarter).toString();
+//        }
+    //REFACT7: Mètode Inline Code:
     public static class Human {
-        private String name;
-        private String age;
-        private String country;
-        private String city;
-        private String street;
-        private String house;
-        private String quarter;
-
-        public String obtenirAdrecaCompleta() {
-            StringBuilder result = new StringBuilder();
-            return result
-                    .append(country)
-                    .append(", ")
-                    .append(city)
-                    .append(", ")
-                    .append(street)
-                    .append(", ")
-                    .append(house)
-                    .append(" ")
-                    .append(quarter).toString();
-        }
+        private String name, age, country, city, street, house, quarter;
+    //REFACT8: Mètode Inline Code:
+    public String obtenIRAdrecaCompleta() {
+        return String.join(", ", country, city, street, house + " " + quarter);
     }
-
-    public static class Order {
-        private List<OrderLineItem> lineItems;
-        private double taxRate;
-
-        public Order(List<OrderLineItem> lineItems, double taxRate) {
-            this.lineItems = lineItems;
-            this.taxRate = taxRate;
-        }
-
-        public double calculateTotalPrice() {
-            double subtotal = 0.0;
-            for (OrderLineItem item : lineItems) {
-                subtotal += item.getPrice();
-            }
-            double tax = subtotal * taxRate;
-            return subtotal + tax;
-        }
     }
+    //REFACT5: EXTRACCIO DE CLASE: Order
+//    public static class Order {
+//        private List<OrderLineItem> lineItems;
+//        private double taxRate;
+//
+//        public Order(List<OrderLineItem> lineItems, double taxRate) {
+//            this.lineItems = lineItems;
+//            this.taxRate = taxRate;
+//        }
+//
+//        public double calculateTotalPrice() {
+//            double subtotal = 0.0;
+//            for (OrderLineItem item : lineItems) {
+//                subtotal += item.getPrice();
+//            }
+//            double tax = subtotal * taxRate;
+//            return subtotal + tax;
+//        }
+//    }
 //REFACT4: eXTRACCIO DE CLASE: OrderLineItem
 //    public class OrderLineItem {
 //        private String productName;
@@ -164,18 +184,18 @@ public class Main {
 //            return price * quantity;
 //        }
 //    }
-
-    public class Customer {
-        private String firstName;
-        private String lastName;
-
-        public Customer(String firstName, String lastName) {
-            this.firstName = firstName;
-            this.lastName = lastName;
-        }
-
-        public String getFullName() {
-            return firstName + " " + lastName;
-        }
-    }
+//REFACT6: eXTRACCIO DE CLASE: Customer
+//    public class Customer {
+//        private String firstName;
+//        private String lastName;
+//
+//        public Customer(String firstName, String lastName) {
+//            this.firstName = firstName;
+//            this.lastName = lastName;
+//        }
+//
+//        public String getFullName() {
+//            return firstName + " " + lastName;
+//        }
+//    }
 }
