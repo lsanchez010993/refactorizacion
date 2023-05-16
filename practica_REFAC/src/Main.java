@@ -13,7 +13,7 @@ public class Main {
         System.out.println("3. ");
         System.out.println("4. ");
         System.out.println("5. ");
-        System.out.println("0. Acabar");
+        System.out.println("0. ");
 
         return introducirOpcion();
     }
